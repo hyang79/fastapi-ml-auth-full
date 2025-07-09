@@ -1,6 +1,7 @@
-import joblib
+import cloudpickle
 
-model = joblib.load("model/iris_clf.pkl")
+with open("model/iris_clf.pkl","rb") as f:
+    model = cloudpickle.load(f)
 
-def predict_species(features: list):
-    return int(model.predict([features])[0])
+def predict(features: list):
+    return model.predict([features]).tolist()
